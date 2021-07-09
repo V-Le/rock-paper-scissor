@@ -1,12 +1,15 @@
 // Paper Rock Scissor game
 
-function createPlayerChoice() {
+function createPlayerChoice(choice) {
     // create VARIABLE to store player choice
-    let playerSelection;
-    // PROMPT player to choose rock paper scissors (convert to lowercase)
-    playerSelection = prompt("Please type: 'Rock', 'Paper', or 'Scissor'").toLowerCase();
-
-    return playerSelection;
+    switch (choice) {
+        case "rock":
+            return "rock";
+        case "paper":
+            return "paper";
+        case "scissor":
+            return "scissor";
+    }
 }
 
 function createComputerChoice() {
@@ -67,14 +70,21 @@ function comparePlayerComputerChoice(playerSelection, computerSelection) {
     return outcomeMessage;
 }
 
-function playRound(){
-    let storePlayerChoice = createPlayerChoice();
+function playRound(choice){
+    let storePlayerChoice = createPlayerChoice(choice);
     let storeComputerChoice = createComputerChoice();
     return comparePlayerComputerChoice(storePlayerChoice, storeComputerChoice);
 }
 
-function game() {
-    return playRound();
+function game(choice) {
+    return playRound(choice);
 }
 
-game();
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => console.log(game('rock')));
+
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', () => console.log(game('paper')));
+
+const scissor = document.querySelector('#scissor');
+scissor.addEventListener('click', () => console.log(game('scissor')));
