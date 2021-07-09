@@ -31,6 +31,7 @@ function createComputerChoice() {
 function comparePlayerComputerChoice(playerSelection, computerSelection) {
     let outcomeMessage;
     
+    
 // IF player choose rock
     if (playerSelection == "rock"){
         if (computerSelection == "rock") {
@@ -72,6 +73,8 @@ function comparePlayerComputerChoice(playerSelection, computerSelection) {
     resultsText.innerHTML = "player score: " + playerScore + "<br>" +
                             "computer score: " + computerScore + "<br>" +
                             outcomeMessage;
+    
+    
     return;
 }
 
