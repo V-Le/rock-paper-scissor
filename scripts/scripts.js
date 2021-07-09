@@ -88,10 +88,3 @@ function game(choice) {
 
 const button = document.querySelectorAll('button');
 button.forEach(button => button.addEventListener('click', () => game(button.value)));
-
-// const paper = document.querySelector('#paper');
-// paper.addEventListener('click', () => resultsText.innerText = game('paper'));
-
-// const scissor = document.querySelector('#scissor');
-// scissor.addEventListener('click', () => resultsText.innerText = game('scissor'));
-
