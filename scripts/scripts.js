@@ -1,4 +1,13 @@
 // Paper Rock Scissor game
+let playerScore = 0;
+let computerScore = 0;
+const container = document.querySelector('#container');
+const resultsDiv = document.createElement('div');
+const resultsScore = document.createElement('p');
+const resultsText = document.createElement('p');
+resultsDiv.appendChild(resultsScore);
+resultsDiv.appendChild(resultsText);
+container.appendChild(resultsDiv);
 
 function createPlayerChoice(choice) {
     // create VARIABLE to store player choice
@@ -14,21 +23,9 @@ function createPlayerChoice(choice) {
 
 function createComputerChoice() {
     // CREATE VARIABLE to store computer choice
-    let computerSelection;
-    // Computer picks at random between 3 choices, Math.floor(Math.random()*3), rock paper scissors
-    switch (Math.floor(Math.random()*3)) {
-        case 0:
-            computerSelection = "rock";
-            break;
-        case 1:
-            computerSelection = "paper";
-            break;
-        case 2:
-            computerSelection = "scissor"
-            break;
-    }
-    // return computer choice
-    return computerSelection;
+    let computerSelection = ['rock', 'paper', 'scissor']
+    // Computer picks at random rock paper scissors and return computer choice
+    return computerSelection[Math.floor(Math.random()*3)];
 }
 
 function comparePlayerComputerChoice(playerSelection, computerSelection) {
@@ -39,8 +36,10 @@ function comparePlayerComputerChoice(playerSelection, computerSelection) {
         if (computerSelection == "rock") {
             outcomeMessage = "Both chose rock. Game is a tie";
         } else if (computerSelection == "paper") {
+            computerScore += 1;
             outcomeMessage = "Player chose rock, computer chose paper. Computer wins.";
         } else if (computerSelection == "scissor"){
+            playerScore += 1;
             outcomeMessage = "Player chose rock, computer chose scissor. Player wins.";
         }
     }
@@ -50,8 +49,10 @@ function comparePlayerComputerChoice(playerSelection, computerSelection) {
         if (computerSelection == "paper") {
             outcomeMessage = "Both chose paper. Game is a tie";
         } else if (computerSelection == "scissor") {
+            computerScore += 1;
             outcomeMessage = "Player chose paper, computer chose scissor. Computer wins.";
         } else if (computerSelection == "rock"){
+            playerScore += 1;
             outcomeMessage = "Player chose paper, computer chose rock. Player wins.";
         }
     }
@@ -61,13 +62,17 @@ function comparePlayerComputerChoice(playerSelection, computerSelection) {
         if (computerSelection == "scissor") {
             outcomeMessage = "Both chose scissor. Game is a tie";
         } else if (computerSelection == "rock") {
+            computerScore += 1;
             outcomeMessage = "Player chose scissor, computer chose rock. Computer wins.";
         } else if (computerSelection == "paper"){
+            playerScore += 1;
             outcomeMessage = "Player chose scissor, computer chose paper. Player wins.";
         }
     }
-
-    return outcomeMessage;
+    resultsText.innerHTML = "player score: " + playerScore + "<br>" +
+                            "computer score: " + computerScore + "<br>" +
+                            outcomeMessage;
+    return;
 }
 
 function playRound(choice){
@@ -80,11 +85,13 @@ function game(choice) {
     return playRound(choice);
 }
 
-const rock = document.querySelector('#rock');
-rock.addEventListener('click', () => console.log(game('rock')));
 
-const paper = document.querySelector('#paper');
-paper.addEventListener('click', () => console.log(game('paper')));
+const button = document.querySelectorAll('button');
+button.forEach(button => button.addEventListener('click', () => game(button.value)));
 
-const scissor = document.querySelector('#scissor');
-scissor.addEventListener('click', () => console.log(game('scissor')));
+// const paper = document.querySelector('#paper');
+// paper.addEventListener('click', () => resultsText.innerText = game('paper'));
+
+// const scissor = document.querySelector('#scissor');
+// scissor.addEventListener('click', () => resultsText.innerText = game('scissor'));
+
